@@ -21,7 +21,6 @@ export const useJokeStore = defineStore('joke', () => {
   async function fetchNewJoke(): Promise<void> {
     isLoading.value = true
     error.value = null
-    console.log('Fetching new joke...')
     try {
       const joke = await jokeService!.fetchRandomJoke()
       currentJoke.value = joke

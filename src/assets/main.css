@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-roboto: 'Roboto', sans-serif;
-}
-
+/* Base styles */
 body {
   font-size: 16px;
-  font-family: var(--font-roboto);
+  font-family: 'Roboto', sans-serif;
 }
 
 p,

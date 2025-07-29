@@ -2,28 +2,38 @@
   <div>
     <!-- Profile Photo -->
     <div class="text-center mb-6">
-      <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+      <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
         <img :src="profileData.photo" :alt="profileData.name" class="w-full h-full object-cover" />
       </div>
-      <h1 class="text-xl font-bold text-gray-900">{{ profileData.name }}</h1>
-      <p class="text-gray-600">{{ profileData.title }}</p>
+      <h1 class="text-xl font-bold text-gray-900 dark:text-gray-100">{{ profileData.name }}</h1>
+      <p class="text-gray-600 dark:text-gray-400">{{ profileData.title }}</p>
     </div>
 
     <!-- Contact Details -->
     <div class="mb-6">
-      <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Contact</h2>
+      <h2
+        class="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-3"
+      >
+        Contact
+      </h2>
       <div class="space-y-2">
         <div v-for="(value, key) in profileData.details" :key="key" class="text-sm">
-          <span class="text-gray-600">{{ String(key) }}:</span>
-          <span class="text-gray-900 ml-1">{{ value }}</span>
+          <span class="text-gray-600 dark:text-gray-400">{{ String(key) }}:</span>
+          <span class="text-gray-900 dark:text-gray-100 ml-1">{{ value }}</span>
         </div>
       </div>
     </div>
 
     <!-- About Me -->
     <div>
-      <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">About Me</h2>
-      <p class="text-sm text-gray-700 leading-relaxed">{{ getDisplayAbout() }}</p>
+      <h2
+        class="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-3"
+      >
+        About Me
+      </h2>
+      <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+        {{ getDisplayAbout() }}
+      </p>
     </div>
 
     <!-- Tag Cloud -->
@@ -31,7 +41,7 @@
       <span
         v-for="tag in tagCloud"
         :key="tag"
-        class="mr-1 mb-1 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
+        class="mr-1 mb-1 inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20 dark:ring-green-400/30"
       >
         {{ tag }}
       </span>
@@ -92,7 +102,7 @@ function truncateText(text: string, maxLength: number = 150): string {
 
 // Computed properties for enhanced display
 function getDisplayAbout(): string {
-  return truncateText(props.profileData.about)
+  return props.profileData.about
 }
 
 // Expose useful functions

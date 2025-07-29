@@ -4,15 +4,15 @@
     <TabNavigation :tabs="tabs" :active-tab="activeTab" :on-tab-change="onTabChange" />
 
     <!-- Tab Content -->
-    <div class="bg-white rounded-lg shadow-sm p-6">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 transition-colors duration-300">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Component } from 'vue'
 import type { Tab } from '@/types'
+import type { Component } from 'vue'
 import TabNavigation from './TabNavigation.vue'
 
 interface Props {

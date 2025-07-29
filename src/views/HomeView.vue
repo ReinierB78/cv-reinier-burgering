@@ -366,7 +366,7 @@ const tabs: Tab[] = [
 const profileData: ProfileData = {
   name: 'Reinier Burgering',
   title: 'Full Stack Developer',
-  photo: '/src/assets/logo.svg', // Vervang met jouw foto
+  photo: '/img/profile.jpg', // Place your photo in public/img/profile.jpg
   details: {
     Geboortedatum: '07-07-1978',
     Telefoon: '+31 6 505 26 727',
@@ -374,7 +374,7 @@ const profileData: ProfileData = {
     Locatie: 'Nederland',
   },
   about:
-    'Een leergierig/autodidactisch, veelzijdig en zelfstandige front-end / webdeveloper met bruikbare back-end skills. Inventief en schuwt niet de kwantiteit op te zoeken om te komen tot beste oplossingen. Kritisch reflectievermogen om altijd te willen ontwikkelen en kan daarbij adequaat anticiperen en inspelen op nieuwe situaties',
+    'Een leergierig/autodidactisch, veelzijdig en zelfstandige front-end / webdeveloper met bruikbare back-end skills. Inventief en schuwt niet de kwantiteit op te zoeken om te komen tot beste oplossingen. Kritisch reflectievermogen om altijd te willen ontwikkelen en kan daarbij adequaat anticiperen en inspelen op nieuwe situaties.',
 }
 
 // Animatie functies

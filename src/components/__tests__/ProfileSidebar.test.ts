@@ -1,7 +1,40 @@
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import type { ProfileData } from '../../types'
 import ProfileSidebar from '../ProfileSidebar.vue'
+
+// Mock window.matchMedia for useTheme composable
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
+
+// Mock localStorage
+Object.defineProperty(window, 'localStorage', {
+  value: {
+    getItem: vi.fn(() => null),
+    setItem: vi.fn(),
+    removeItem: vi.fn(),
+  },
+  writable: true,
+})
+
+// Mock the ThemeSwitcher component to avoid useTheme composable issues in tests
+vi.mock('../ThemeSwitcher.vue', () => ({
+  default: {
+    name: 'ThemeSwitcher',
+    template: '<div data-testid="theme-switcher">Theme Switcher Mock</div>',
+  },
+}))
 
 // Tests for the ProfileSidebar component
 // This component displays profile information and tags
