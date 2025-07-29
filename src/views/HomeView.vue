@@ -119,6 +119,14 @@ import MainContent from '../components/MainContent.vue'
 import ProfileSidebar from '../components/ProfileSidebar.vue'
 import SkillsProgress from '../components/SkillsProgress.vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
+// Heroicons imports
+import {
+  AcademicCapIcon,
+  ChartBarIcon,
+  CogIcon,
+  ComputerDesktopIcon,
+  WrenchScrewdriverIcon,
+} from '@heroicons/vue/24/outline'
 
 // Skills data met progress bars
 const frontendSkills: Skill[] = [
@@ -311,12 +319,47 @@ const backendSkillsRef = ref()
 
 // Tab opties
 const tabs: Tab[] = [
-  { id: 'frontend', name: 'Frontend', label: 'Frontend', icon: '💻', href: '#', current: false },
-  { id: 'backend', name: 'Backend', label: 'Backend', icon: '⚙️', href: '#', current: false },
-  { id: 'skills', name: 'Skills', label: 'Skills', icon: '🛠️', href: '#', current: false },
+  {
+    id: 'frontend',
+    name: 'Frontend',
+    label: 'Frontend',
+    icon: ComputerDesktopIcon,
+    href: '#',
+    current: false,
+  },
+  {
+    id: 'backend',
+    name: 'Backend',
+    label: 'Backend',
+    icon: CogIcon,
+    href: '#',
+    current: false,
+  },
+  {
+    id: 'skills',
+    name: 'Skills',
+    label: 'Skills',
+    icon: WrenchScrewdriverIcon,
+    href: '#',
+    current: false,
+  },
   // { id: 'day', name: 'Mijn Dag', label: 'Mijn Dag', icon: '🌅', href: '#', current: false },
-  { id: 'experience', name: 'Ervaring', label: 'Ervaring', icon: '📈', href: '#', current: false },
-  { id: 'education', name: 'Bijdrage', label: 'Bijdrage', icon: '🎓', href: '#', current: false },
+  {
+    id: 'experience',
+    name: 'Ervaring',
+    label: 'Ervaring',
+    icon: ChartBarIcon,
+    href: '#',
+    current: false,
+  },
+  {
+    id: 'education',
+    name: 'Bijdrage',
+    label: 'Bijdrage',
+    icon: AcademicCapIcon,
+    href: '#',
+    current: false,
+  },
 ]
 
 // CV Data

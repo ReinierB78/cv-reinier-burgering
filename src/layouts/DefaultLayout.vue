@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen bg-gray-50 flex">
-    <!-- Left Sidebar (25%) -->
-    <aside class="w-1/4 bg-white shadow-lg p-6 overflow-y-auto">
+    <!-- Left Sidebar (25%) - Sticky -->
+    <aside class="w-1/4 bg-white shadow-lg p-6 sticky top-0 h-screen overflow-y-auto">
       <slot name="sidebar" />
     </aside>
 
-    <!-- Right Main Content Area (75%) -->
-    <main class="w-3/4 p-6">
+    <!-- Right Main Content Area (75%) - Scrollable -->
+    <main class="w-3/4 p-6 overflow-y-auto">
       <slot name="main" />
     </main>
   </div>

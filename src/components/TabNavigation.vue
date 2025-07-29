@@ -10,7 +10,7 @@
           :value="activeTab"
         >
           <option v-for="tab in tabs" :key="tab.id" :value="tab.id">
-            {{ tab.icon }} {{ tab.name }}
+            {{ typeof tab.icon === 'string' ? tab.icon + ' ' : '' }}{{ tab.name }}
           </option>
         </select>
         <ChevronDownIcon
@@ -33,7 +33,16 @@
               ]"
               :aria-current="activeTab === tab.id ? 'page' : undefined"
             >
-              <span>{{ tab.icon }}</span>
+              <!-- Icon (Heroicon component or emoji string) -->
+              <component
+                v-if="typeof tab.icon !== 'string'"
+                :is="tab.icon"
+                class="h-5 w-5"
+                aria-hidden="true"
+              />
+              <span v-else>{{ tab.icon }}</span>
+
+              <!-- Tab name -->
               <span>{{ tab.name }}</span>
             </button>
           </nav>
