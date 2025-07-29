@@ -26,7 +26,7 @@
             title="Backend Development"
             :skills="backendSkills"
             progress-color="green"
-            title-size="extra-large"
+            title-size="medium"
             :auto-animate="false"
             ref="backendSkillsRef"
           />
@@ -105,6 +105,11 @@
         </div>
       </MainContent>
     </template>
+
+    <!-- Mobile Bottom Navigation -->
+    <template #bottom-nav>
+      <MobileBottomNav :tabs="tabs" :active-tab="activeTab" :on-tab-change="handleTabChange" />
+    </template>
   </DefaultLayout>
 </template>
 
@@ -116,6 +121,7 @@ import DevelopmentTimeline from '../components/DevelopmentTimeline.vue'
 import ExperienceTimeline from '../components/ExperienceTimeline.vue'
 import JokeDisplay from '../components/JokeDisplay.vue'
 import MainContent from '../components/MainContent.vue'
+import MobileBottomNav from '../components/MobileBottomNav.vue'
 import ProfileSidebar from '../components/ProfileSidebar.vue'
 import SkillsProgress from '../components/SkillsProgress.vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
@@ -366,7 +372,7 @@ const tabs: Tab[] = [
 const profileData: ProfileData = {
   name: 'Reinier Burgering',
   title: 'Full Stack Developer',
-  photo: '/img/profile.jpg', // Place your photo in public/img/profile.jpg
+  photo: '/img/reinier_profile_pic.jpeg', // Place your photo in public/img/profile.jpg
   details: {
     Geboortedatum: '07-07-1978',
     Telefoon: '+31 6 505 26 727',

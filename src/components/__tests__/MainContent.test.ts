@@ -1,3 +1,4 @@
+import { ChartBarIcon, UserIcon } from '@heroicons/vue/24/outline'
 import { mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import type { Tab } from '../../types'
@@ -5,7 +6,7 @@ import MainContent from '../MainContent.vue'
 import TabNavigation from '../TabNavigation.vue'
 
 // Tests for the MainContent component
-// This component renders tab navigation and provides a slot for content
+// This component renders desktop tab navigation and provides a slot for content
 describe('MainContent', () => {
   // Test data used across all tests
   const mockTabs: Tab[] = [
@@ -13,7 +14,7 @@ describe('MainContent', () => {
       id: 'skills',
       name: 'Skills',
       label: 'Technical Skills',
-      icon: '⚙️',
+      icon: ChartBarIcon,
       href: '#skills',
       current: false,
     },
@@ -21,7 +22,7 @@ describe('MainContent', () => {
       id: 'experience',
       name: 'Experience',
       label: 'Work Experience',
-      icon: '💼',
+      icon: UserIcon,
       href: '#experience',
       current: false,
     },
