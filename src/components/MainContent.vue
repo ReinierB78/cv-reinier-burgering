@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Component } from 'vue'
 import type { Tab } from '@/types'
 import TabNavigation from './TabNavigation.vue'
 
@@ -28,7 +29,7 @@ function getActiveTabName(): string {
   return activeTabObj ? activeTabObj.name : 'Unknown Tab'
 }
 
-function getActiveTabIcon(): string {
+function getActiveTabIcon(): string | Component {
   const activeTabObj = props.tabs.find(tab => tab.id === props.activeTab)
   return activeTabObj ? activeTabObj.icon : '📄'
 }
