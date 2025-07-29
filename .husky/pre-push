@@ -1,0 +1,10 @@
+#!/bin/sh
+# Run tests before pushing to ensure code quality
+echo "Running tests before push..."
+pnpm run test --run
+
+echo "Running type checks..."
+pnpm run type-check
+
+echo "Running build to ensure everything compiles..."
+pnpm run build

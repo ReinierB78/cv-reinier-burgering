@@ -1,0 +1,14 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/__tests__/*", "vitest.config.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "strict": true,
+    "noEmit": true,
+    "types": ["vitest/globals", "jsdom"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

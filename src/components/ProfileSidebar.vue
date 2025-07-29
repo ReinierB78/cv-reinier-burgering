@@ -1,0 +1,106 @@
+<template>
+  <div>
+    <!-- Profile Photo -->
+    <div class="text-center mb-6">
+      <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+        <img :src="profileData.photo" :alt="profileData.name" class="w-full h-full object-cover" />
+      </div>
+      <h1 class="text-xl font-bold text-gray-900">{{ profileData.name }}</h1>
+      <p class="text-gray-600">{{ profileData.title }}</p>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="mb-6">
+      <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">Contact</h2>
+      <div class="space-y-2">
+        <div v-for="(value, key) in profileData.details" :key="key" class="text-sm">
+          <span class="text-gray-600">{{ String(key) }}:</span>
+          <span class="text-gray-900 ml-1">{{ value }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Me -->
+    <div>
+      <h2 class="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">About Me</h2>
+      <p class="text-sm text-gray-700 leading-relaxed">{{ getDisplayAbout() }}</p>
+    </div>
+
+    <!-- Tag Cloud -->
+    <div class="mt-4">
+      <span
+        v-for="tag in tagCloud"
+        :key="tag"
+        class="mr-1 mb-1 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"
+      >
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { ProfileData } from '@/types'
+
+interface Props {
+  profileData: ProfileData
+  tagCloud: string[]
+}
+
+const props = defineProps<Props>()
+
+// Helper functions
+function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map(word => word.charAt(0))
+    .join('')
+    .toUpperCase()
+}
+
+function formatContactKey(key: string): string {
+  // Convert camelCase or snake_case to readable format
+  return key
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/_/g, ' ')
+    .replace(/^\w/, c => c.toUpperCase())
+}
+
+function getTagColor(index: number): string {
+  const colors = ['green', 'blue', 'purple', 'indigo', 'pink', 'yellow', 'red', 'gray']
+  return colors[index % colors.length]
+}
+
+function getContactIcon(key: string): string {
+  const iconMap: Record<string, string> = {
+    email: '📧',
+    phone: '📞',
+    linkedin: '💼',
+    github: '🔗',
+    website: '🌐',
+    location: '📍',
+    birthday: '🎂',
+    address: '🏠',
+  }
+  return iconMap[key.toLowerCase()] || '📋'
+}
+
+function truncateText(text: string, maxLength: number = 150): string {
+  if (text.length <= maxLength) return text
+  return text.substring(0, maxLength).trim() + '...'
+}
+
+// Computed properties for enhanced display
+function getDisplayAbout(): string {
+  return truncateText(props.profileData.about)
+}
+
+// Expose useful functions
+defineExpose({
+  getInitials,
+  formatContactKey,
+  getTagColor,
+  getContactIcon,
+  truncateText,
+})
+</script>

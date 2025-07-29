@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+
+# Generated files
+.nuxt/
+.output/
+.vite/
+
+# Package managers
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
