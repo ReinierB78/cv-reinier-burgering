@@ -1,11 +1,11 @@
 <template>
   <div class="space-y-6">
-    <h2 :class="titleClass">{{ title }}</h2>
+    <h2 :class="titleClass" class="text-gray-900 dark:text-gray-100">{{ title }}</h2>
     <div class="grid gap-4">
       <div v-for="skill in animatedSkills" :key="skill.name" class="space-y-2">
         <div class="flex justify-between">
-          <span class="text-sm font-medium text-gray-700">{{ skill.name }}</span>
-          <span class="text-sm text-gray-500">{{ skill.level }}%</span>
+          <span class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ skill.name }}</span>
+          <span class="text-sm text-gray-900 dark:text-gray-100">{{ skill.level }}%</span>
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2">
           <div
@@ -45,9 +45,9 @@ const animatedSkills = ref<AnimatedSkill[]>(
 // Computed classes
 const titleClass = computed(() => {
   const sizeClasses = {
-    small: 'text-lg font-semibold text-gray-900 mb-3',
-    medium: 'text-2xl font-bold text-gray-900 mb-4',
-    large: 'text-3xl font-bold text-gray-900 mb-4',
+    small: 'text-lg font-semibold  mb-3',
+    medium: 'text-2xl font-bold  mb-4',
+    large: 'text-3xl font-bold  mb-4',
     'extra-large': 'text-6xl font-light text-gray-500 mb-4',
   }
   return sizeClasses[props.titleSize]

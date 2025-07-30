@@ -29,7 +29,7 @@
       <h2
         class="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wide mb-3"
       >
-        About Me
+        Over mij
       </h2>
       <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
         {{ getDisplayAbout() }}

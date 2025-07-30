@@ -225,13 +225,21 @@ describe('ExperienceTimeline', () => {
       },
     })
 
-    // Assert: Check if hover classes are present
-    const jobItems = wrapper.findAll('.hover\\:bg-gray-50')
+    // Assert: Check if job items have border-l-4 class (main container)
+    const jobItems = wrapper.findAll('.border-l-4')
     expect(jobItems).toHaveLength(mockWorkExperience.length)
 
-    // Assert: Check if title hover effects exist
-    const jobTitles = wrapper.findAll('.hover\\:text-blue-600')
-    expect(jobTitles).toHaveLength(mockWorkExperience.length)
+    // Assert: Check if job items have cursor-pointer class for interactivity
+    const clickableItems = wrapper.findAll('.cursor-pointer')
+    expect(clickableItems).toHaveLength(mockWorkExperience.length)
+
+    // Assert: Check if transition classes are present on titles
+    const titleElements = wrapper.findAll('h3.transition-colors')
+    expect(titleElements).toHaveLength(mockWorkExperience.length)
+
+    // Assert: Check if SVG icons have transition classes
+    const svgIcons = wrapper.findAll('svg.transition-all')
+    expect(svgIcons).toHaveLength(mockWorkExperience.length)
   })
 
   // Test: Check empty work experience handling

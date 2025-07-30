@@ -1,6 +1,8 @@
 <template>
   <div class="mt-8">
-    <h3 class="text-lg font-semibold text-gray-800 mb-6">Belangrijke ontwikkelingsmomenten</h3>
+    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6 transition-colors">
+      Belangrijke ontwikkelingsmomenten
+    </h3>
 
     <!-- Timeline Container -->
     <div class="relative">
@@ -18,7 +20,7 @@
         >
           <!-- Timeline Dot -->
           <div
-            class="absolute left-2 top-1 w-4 h-4 bg-white border-4 border-blue-500 rounded-full shadow-lg group-hover:border-indigo-600 transition-colors duration-300"
+            class="absolute left-2 top-1 w-4 h-4 bg-white dark:bg-gray-800 border-4 border-blue-500 rounded-full shadow-lg group-hover:border-indigo-600 transition-colors duration-300"
           >
             <div
               class="absolute inset-1 bg-blue-500 rounded-full group-hover:bg-indigo-600 transition-colors duration-300"
@@ -27,21 +29,25 @@
 
           <!-- Content Card -->
           <div
-            class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300 group-hover:border-blue-300"
+            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm hover:shadow-md dark:hover:shadow-lg transition-all duration-300 group-hover:border-blue-300 dark:group-hover:border-blue-500"
           >
             <!-- Header -->
             <div class="flex justify-between items-start mb-3">
               <div class="flex-1">
                 <h4
-                  class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300"
+                  class="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300"
                 >
                   {{ moment.title }}
                 </h4>
                 <div class="flex items-center space-x-2 mt-1">
-                  <span class="text-sm text-gray-500 font-medium">{{ moment.period }}</span>
+                  <span
+                    class="text-sm text-gray-500 dark:text-gray-400 font-medium transition-colors"
+                  >
+                    {{ moment.period }}
+                  </span>
                   <span
                     v-if="moment.institution"
-                    class="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded-full"
+                    class="text-sm text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded-full transition-colors"
                   >
                     {{ moment.institution }}
                   </span>
@@ -51,7 +57,7 @@
               <!-- Timeline Badge -->
               <div class="ml-4 flex-shrink-0">
                 <span
-                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                  class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm"
                 >
                   {{ getTimelineYear(moment.period) }}
                 </span>
@@ -61,14 +67,16 @@
             <!-- Description -->
             <p
               v-if="moment.description"
-              class="text-sm text-gray-700 leading-relaxed"
+              class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
               style="white-space: pre-line"
             >
               {{ moment.description }}
             </p>
 
             <!-- Progress Indicator (optional visual enhancement) -->
-            <div class="mt-4 h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              class="mt-4 h-1 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden transition-colors"
+            >
               <div
                 class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-1000 ease-out"
                 :style="{ width: `${getProgressWidth(index)}%` }"

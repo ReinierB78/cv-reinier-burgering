@@ -34,21 +34,33 @@
 
         <!-- Skills Tab -->
         <div v-if="activeTab === 'skills'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Algemene Vaardigheden</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
+            Algemene Vaardigheden
+          </h2>
           <div class="grid grid-cols-2 gap-6">
             <div class="space-y-3">
-              <h3 class="text-lg font-semibold text-gray-800">Technisch</h3>
-              <ul class="space-y-2 text-sm text-gray-700">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 transition-colors">
+                Technisch
+              </h3>
+              <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <li v-for="skill in technicalSkillsList" :key="skill" class="flex items-center">
-                  <span class="text-green-500 mr-2">✓</span>{{ skill }}
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span class="text-gray-900 dark:text-gray-100 transition-colors">{{
+                    skill
+                  }}</span>
                 </li>
               </ul>
             </div>
             <div class="space-y-3">
-              <h3 class="text-lg font-semibold text-gray-800">Soft Skills</h3>
-              <ul class="space-y-2 text-sm text-gray-700">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 transition-colors">
+                Soft Skills
+              </h3>
+              <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <li v-for="skill in softSkillsList" :key="skill" class="flex items-center">
-                  <span class="text-blue-500 mr-2">✓</span>{{ skill }}
+                  <span class="text-blue-500 mr-2">✓</span>
+                  <span class="text-gray-900 dark:text-gray-100 transition-colors">{{
+                    skill
+                  }}</span>
                 </li>
               </ul>
             </div>
@@ -56,16 +68,22 @@
 
           <!-- Joke Display - Demonstration of Pinia Store + Service Pattern -->
           <div class="mt-8">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <h3
+              class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center transition-colors"
+            >
               <span class="mr-2">🛠️</span>
-              Technical Demo: Pinia Store + Service Pattern
+              <span class="text-gray-900 dark:text-gray-100 transition-colors">
+                Technical Demo: Pinia Store + Service Pattern
+              </span>
             </h3>
             <JokeDisplay />
-            <div class="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-              <p class="text-sm text-blue-700">
+            <div
+              class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700 transition-colors"
+            >
+              <p class="text-sm text-blue-700 dark:text-blue-300 transition-colors">
                 <span class="font-medium">🎯 Demo Features:</span>
-                Pinia store management, dependency injection via symbols, service layer pattern, API
-                error handling, loading states, en TypeScript interfaces.
+                Pinia store beheer, dependency injection via symbols, service layer patroon, API
+                error afhandeling, laadstatus, en TypeScript interfaces.
               </p>
             </div>
           </div>
@@ -73,7 +91,9 @@
 
         <!-- Day Circle Tab -->
         <div v-if="activeTab === 'day'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Work-Life Balance</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
+            Work-Life Balance
+          </h2>
           <div class="flex justify-center">
             <DayCircle />
           </div>
@@ -81,22 +101,33 @@
 
         <!-- Experience Tab -->
         <div v-if="activeTab === 'experience'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Werkervaring</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Werkervaring</h2>
           <ExperienceTimeline :work-experience="workExperience" />
         </div>
 
         <!-- Education Tab -->
         <div v-if="activeTab === 'education'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Bijdrage & Ontwikkeling</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            Bijdrage & Ontwikkeling
+          </h2>
           <div class="space-y-4">
             <div
               v-for="(edu, index) in educationList"
               :key="index"
-              class="bg-gray-50 p-4 rounded-lg"
+              class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors"
             >
-              <h3 class="text-lg font-semibold text-gray-900">{{ edu.title }}</h3>
-              <p class="text-gray-600">{{ edu.institution }} • {{ edu.period }}</p>
-              <p v-if="edu.description" class="text-sm text-gray-700 mt-2">{{ edu.description }}</p>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 transition-colors">
+                {{ edu.title }}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 transition-colors">
+                {{ edu.institution }} • {{ edu.period }}
+              </p>
+              <p
+                v-if="edu.description"
+                class="text-sm text-gray-700 dark:text-gray-300 mt-2 transition-colors"
+              >
+                {{ edu.description }}
+              </p>
             </div>
 
             <!-- Development Timeline Component -->

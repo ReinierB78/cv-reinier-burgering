@@ -4,24 +4,30 @@
       v-for="(job, index) in workExperience"
       :key="index"
       :class="[
-        'border-l-4 pl-4 rounded-r-lg transition-all duration-300 cursor-pointer hover:bg-gray-50',
+        'border-l-4 pl-4 rounded-r-lg transition-all duration-300 cursor-pointer',
+        // Border colors
         index % 2 === 0 ? 'border-blue-500' : 'border-green-500',
-        expandedJobs.has(index) ? 'bg-gray-50 shadow-sm' : '',
+        // Background states
+        expandedJobs.has(index)
+          ? 'bg-gray-50 dark:bg-gray-800 shadow-sm'
+          : 'hover:bg-gray-100 dark:hover:bg-gray-700',
       ]"
     >
       <!-- Clickable header -->
       <div @click="toggleJobExpansion(index)" class="py-3">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 transition-colors">
               {{ job.title }}
             </h3>
-            <p class="text-gray-600">{{ job.company }} • {{ formatPeriodDisplay(job.period) }}</p>
+            <p class="text-gray-600 dark:text-gray-400 transition-colors">
+              {{ job.company }} • {{ formatPeriodDisplay(job.period) }}
+            </p>
           </div>
           <div class="ml-4">
             <svg
               :class="[
-                'w-5 h-5 text-gray-400 transition-transform duration-200',
+                'w-5 h-5 text-gray-500 dark:text-gray-400 transition-all duration-200',
                 expandedJobs.has(index) ? 'rotate-180' : '',
               ]"
               fill="none"
@@ -44,13 +50,20 @@
         v-if="expandedJobs.has(index)"
         class="overflow-hidden transition-all duration-300 ease-in-out pb-4"
       >
-        <div class="pt-2 border-t border-gray-200">
-          <p class="text-sm text-gray-700 mb-3">{{ job.description }}</p>
+        <div class="pt-2 border-t border-gray-200 dark:border-gray-600">
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3 transition-colors">
+            {{ job.description }}
+          </p>
           <div v-if="job.tags" class="flex flex-wrap gap-1">
             <span
               v-for="tag in job.tags"
               :key="tag"
-              class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
+              :class="[
+                'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset transition-colors',
+                index % 2 === 0
+                  ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 ring-blue-600/20 dark:ring-blue-400/30'
+                  : 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 ring-green-600/20 dark:ring-green-400/30',
+              ]"
             >
               {{ tag }}
             </span>
