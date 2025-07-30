@@ -14,12 +14,12 @@
           <!-- Hamburger Menu Button -->
           <button
             @click="toggleSidebar"
-            class="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            class="p-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors touch-manipulation"
+            style="font-size: 16px; min-height: 44px; min-width: 44px"
             :aria-expanded="isSidebarOpen"
             aria-label="Toggle navigation menu"
           >
             <UserCircleIcon v-if="!isSidebarOpen" class="h-6 w-6" />
-
             <XMarkIcon v-else class="h-6 w-6" />
           </button>
         </div>

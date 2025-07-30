@@ -7,7 +7,8 @@
         v-for="tab in tabs"
         :key="tab.id"
         @click="onTabChange(tab.id)"
-        class="flex flex-col items-center space-y-1 p-2 rounded-lg transition-colors duration-200 min-w-0 flex-1"
+        class="flex flex-col items-center space-y-1 p-3 rounded-lg transition-colors duration-200 min-w-0 flex-1 touch-manipulation"
+        style="font-size: 16px; min-height: 44px"
         :class="{
           'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20': activeTab === tab.id,
           'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700':
@@ -26,7 +27,7 @@
         />
 
         <!-- Label -->
-        <span class="text-xs font-medium truncate max-w-full">
+        <span class="text-sm font-medium truncate max-w-full" style="font-size: 16px">
           {{ tab.name }}
         </span>
       </button>

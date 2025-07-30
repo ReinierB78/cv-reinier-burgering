@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full">
     <!-- Profile Photo -->
     <div class="text-center mb-6">
       <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
@@ -41,9 +41,9 @@
       <span
         v-for="tag in tagCloud"
         :key="tag"
-        class="mr-1 mb-1 inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20 dark:ring-green-400/30"
+        class="text-sm mr-1 mb-1 inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/20 px-2 py-1 font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20 dark:ring-green-400/30"
       >
-        {{ tag }}
+        <small>{{ tag }}</small>
       </span>
     </div>
   </div>
