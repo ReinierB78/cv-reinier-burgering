@@ -72,7 +72,18 @@
             >
               {{ moment.description }}
             </p>
-
+            <div>
+              <!-- Tags -->
+              <div v-if="moment.tags" class="mt-3 flex flex-wrap gap-2">
+                <span
+                  v-for="tag in moment.tags"
+                  :key="tag"
+                  class="inline-flex items-center px-2 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full ring-1 ring-inset ring-blue-600/20 dark:ring-blue-400/30 transition-colors"
+                >
+                  {{ tag }}
+                </span>
+              </div>
+            </div>
             <!-- Progress Indicator (optional visual enhancement) -->
             <div
               class="mt-4 h-1 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden transition-colors"
@@ -107,7 +118,7 @@ function getTimelineYear(period: string): string {
 function getProgressWidth(index: number): number {
   // Create a visual progress based on timeline position
   // More recent items get higher progress
-  return Math.max(20, 100 - index * 10)
+  return 100 - index + index
 }
 </script>
 

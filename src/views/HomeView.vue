@@ -12,6 +12,11 @@
         <div v-if="activeTab === 'frontend'" class="space-y-6">
           <SkillsProgress
             title="Frontend Development"
+            intro="Frontend development is voor mij de plek waar techniek en beleving samenkomen en waar ik het uiteindelijk voor doe.
+            Dat laat ik terugkomen in pixel-perfect componenten, consistente code (prettier en lint) en een goede balans tussen herbruikbaarheid en
+            leesbaarheid. Werken met Vue (en Nuxt), TypeScript en Tailwind draagt bij aan wat ik wil bereiken voor eindgebruikers,
+            en ik haal energie uit het creëren van overzichtelijke, schaalbare interfaces die gewoon kloppen. Zowel technisch én visueel.
+          "
             :skills="frontendSkills"
             progress-color="blue"
             title-size="medium"
@@ -24,6 +29,7 @@
         <div v-if="activeTab === 'backend'" class="space-y-6">
           <SkillsProgress
             title="Backend Development"
+            intro="Aan de backendkant draait het voor mij om structuur, logica en slimme koppelingen. Of het nu gaat om een WordPress-setup als headless CMS, het bouwen van custom API's of het integreren van third-party systemen: ik denk graag mee over de architectuur en hou van oplossingen die onderhoudbaar zijn op de lange termijn. Mijn ervaring met PHP, Laravel, custom pluginontwikkeling en API-design helpt me om de frontend, en dus de eindgebruiker altijd precies te geven wat het nodig heeft. "
             :skills="backendSkills"
             progress-color="green"
             title-size="medium"
@@ -107,32 +113,10 @@
 
         <!-- Education Tab -->
         <div v-if="activeTab === 'education'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            Bijdrage & Ontwikkeling
-          </h2>
-          <div class="space-y-4">
-            <div
-              v-for="(edu, index) in educationList"
-              :key="index"
-              class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 transition-colors"
-            >
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 transition-colors">
-                {{ edu.title }}
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400 transition-colors">
-                {{ edu.institution }} • {{ edu.period }}
-              </p>
-              <p
-                v-if="edu.description"
-                class="text-sm text-gray-700 dark:text-gray-300 mt-2 transition-colors"
-              >
-                {{ edu.description }}
-              </p>
-            </div>
-
-            <!-- Development Timeline Component -->
-            <DevelopmentTimeline :development-moments="developmentMoments" />
-          </div>
+          <EducationSection
+            :education-list="educationList"
+            :development-moments="developmentMoments"
+          />
         </div>
       </MainContent>
     </template>
@@ -148,7 +132,7 @@
 import type { Education, ProfileData, Skill, Tab, WorkExperience } from '@/types'
 import { nextTick, onMounted, ref } from 'vue'
 import DayCircle from '../components/DayCircle.vue'
-import DevelopmentTimeline from '../components/DevelopmentTimeline.vue'
+import EducationSection from '../components/EducationSection.vue'
 import ExperienceTimeline from '../components/ExperienceTimeline.vue'
 import JokeDisplay from '../components/JokeDisplay.vue'
 import MainContent from '../components/MainContent.vue'
@@ -167,21 +151,36 @@ import {
 
 // Skills data met progress bars
 const frontendSkills: Skill[] = [
-  { name: 'Vue.js', level: 90 },
+  { name: 'Vue', level: 95 },
+  { name: 'Nuxt', level: 90 },
   { name: 'TypeScript', level: 85 },
-  { name: 'Tailwind CSS', level: 80 },
-  { name: 'React', level: 75 },
   { name: 'JavaScript', level: 95 },
-  { name: 'HTML', level: 100 },
-  { name: 'CSS', level: 90 },
-  { name: 'Nuxt', level: 80 },
+  { name: 'Tailwind CSS', level: 90 },
+  { name: 'HTML/CSS/JavaScript/jQuery', level: 100 },
+  { name: 'React, React Native', level: 75 },
+  { name: 'Pinia / Vuex', level: 90 },
+  { name: 'Composition API', level: 95 },
+  { name: 'Component-based architecture', level: 95 },
+  { name: 'Responsive Design', level: 90 },
+  { name: 'Vitest / Teststrategie', level: 75 },
+  { name: 'Vite / Tooling', level: 85 },
+  { name: 'Accessibility (WCAG basics)', level: 85 },
+  { name: 'API Integratie (REST / Axios)', level: 90 },
 ]
 
 const backendSkills: Skill[] = [
   { name: 'Laravel', level: 80 },
   { name: 'PHP', level: 85 },
-  { name: 'Wordpress', level: 95 },
+  { name: 'WordPress Custom', level: 95 },
   { name: 'WP Plugins', level: 90 },
+  { name: 'REST API Development', level: 85 },
+  { name: 'Headless CMS (WordPress)', level: 90 },
+  { name: 'MySQL / DBNGIN', level: 80 },
+  { name: 'Authentication flows (JWT / OAuth)', level: 75 },
+  { name: 'CI/CD Pipelines (e.g. GitHub Actions)', level: 70 },
+  { name: 'Local dev environments (Valet)', level: 85 },
+  { name: 'Error handling & debugging', level: 80 },
+  { name: 'API-first data architecture', level: 75 },
 ]
 
 const tagCloud: string[] = [
@@ -274,29 +273,32 @@ const workExperience: WorkExperience[] = [
   },
 ]
 
-const educationList: Education[] = [
-  {
-    title: 'Zelfstandig ondernemer - Continue ontwikkeling',
-    institution: 'Autodidactisch leren',
-    period: '2017 - heden',
-    description:
-      'Continue bijscholing in moderne web technologieën, frameworks en development best practices',
-  },
-  {
-    title: 'Vrijwilliger/Adviseur',
-    institution: 'Stichting Philia',
-    period: '2015 - 2016',
-    description: 'Crowdfunding en online zichtbaarheid advisering',
-  },
-]
+const educationList: Education[] = []
 
 const developmentMoments: Education[] = [
+  {
+    title: 'WCAG optimalisaties inwissel platform',
+    institution: 'GroupCard',
+    period: '2025',
+    description:
+      'Verbeteren van toegankelijkheid en gebruiksvriendelijkheid van het inwissel platform. Focus op WCAG 2.1 richtlijnen, inclusief toetsenbord navigatie, schermlezer ondersteuning en visuele contrasten.',
+    tags: ['PHP', 'Laravel', 'JavaScript', 'OOP', 'MVC', 'GIT', 'WordPress'],
+  },
   {
     title: 'Refactor van Nuxt 2 naar Nuxt 3',
     institution: 'GroupCard',
     period: '2024 - 2025',
     description:
       'Gefaseerde refactor van bestaande Nuxt 2 applicaties naar Nuxt 3. Focus op verbeterde prestaties, effectiever developen en herbruikbaarheid van componenten.\n\nNuxt 2 project bestond uit Nuxt Property Decorator en Vuex, waar company standard meer om Pinia, Composition API en ook Tailwind draaide.',
+    tags: ['JavaScript', 'Nuxt 3', 'Vue 3', 'Tailwind CSS', 'TypeScript'],
+  },
+  {
+    title: 'Label vertaling app voor inwissel platform',
+    institution: 'GroupCard',
+    period: '2024 - 2025',
+    description:
+      'Ontwikkeling van een label vertaling app voor het inwissel platform (op basis van Vue3, Tailwind en Laravel API). Hierbij kan de tenant zelf labels vertalen en beheren. Dit verbetert de gebruikerservaring en maakt het platform toegankelijker voor verschillende taalgebieden.',
+    tags: ['JavaScript', 'Nuxt 3', 'Vue 3', 'Tailwind CSS', 'TypeScript'],
   },
   {
     title: 'Custom WordPress Plugin Ontwikkeling',
@@ -304,6 +306,7 @@ const developmentMoments: Education[] = [
     period: '2023 - 2025',
     description:
       'Gecentraliseerde ontwikkeling van maatwerk WordPress plugins voor verschillende projecten. Focus op herbruikbaarheid, performance en integratie met bestaande systemen. Maar ook het centraal bijhouden waardoor ontwikkelingen op plugins van een centraal punt kunnen worden uitgerold over 40+ Wordpress sites.',
+    tags: ['PHP', 'WordPress', 'Plugin Development', 'JavaScript', 'OOP', 'GIT'],
   },
   {
     title: 'App ontwikkeling met Laravel en Vue / Inertia',
@@ -311,6 +314,7 @@ const developmentMoments: Education[] = [
     period: '2022 - 2023',
     description:
       'Multi tenant app ontwikkeling met Laravel en Vue / Inertia. Focus op schaalbaarheid, performance en gebruikerservaring. Betrof een doorontwikkeling van een bestaand Laravel platform naar een multi-tenant architectuur met Vue / Inertia frontend en Tailwind configuratie.',
+    tags: ['Laravel', 'Inertia', 'Vue 3', 'Tailwind CSS', 'TypeScript'],
   },
   {
     title: 'Headless corporate website obv Nuxt 3 en WordPress REST API',
@@ -318,6 +322,7 @@ const developmentMoments: Education[] = [
     period: '2021 - 2022',
     description:
       'Opzetten van een headless corporate website met Nuxt 3 en WordPress REST API. Focus op performance, SEO en gebruikerservaring. Nauwe samenwerking met design en Marketingafdeling. Tevens Mailchimp integratie voor nieuwsbrief en whitepapers als ook Google Analytics.',
+    tags: ['Nuxt 3', 'WordPress REST API', 'SEO', 'JavaScript', 'Tailwind CSS'],
   },
   {
     title: 'Verkoopmodule voor maatwerk naamplaten en stickers',
@@ -325,6 +330,7 @@ const developmentMoments: Education[] = [
     period: '2021 - 2022',
     description:
       'Voor een specifieke opdrachtgevers een verkoopmodule opgezet waarbij maatwerk naamplaten en stickers besteld kunnen worden. Hierbij is gebruik gemaakt van WooCommerce en een op maat gemaakt product configurator, met daar bovenop de eigen maatwerk inbreng.',
+    tags: ['WordPress', 'WooCommerce', 'PHP', 'JavaScript', 'OOP', 'GIT'],
   },
   {
     title: 'Refactor Webshop op basis van Laravel en Vue',
@@ -332,6 +338,7 @@ const developmentMoments: Education[] = [
     period: '2020 - 2022',
     description:
       'Refactor van een bestaande webshop naar een nieuwe Laravel en Vue architectuur. Focus op verbeterde prestaties, maar ook multi tenant en vernieuwde Bootstrap 5 ipv losse css.',
+    tags: ['Laravel', 'Vue 3', 'Bootstrap 5', 'Tailwind CSS', 'TypeScript'],
   },
   {
     title: 'Parent - Child theme Wordpress',
@@ -339,6 +346,7 @@ const developmentMoments: Education[] = [
     period: '2020 - 2022',
     description:
       'Voor een divers aantal opdrachtgevers een parent - child theme structuur opgezet. Dit om de snelheid van opleveren en ontwikkelen te verhogen en de onderhoudbaarheid van de websites te verbeteren. Tevens de mogelijkheid om continue learnings m.b.t. bijvoorbeeld SEO centraal door te voeren en over alle sites uit te rollen.',
+    tags: ['WordPress', 'PHP', 'JavaScript', 'jQuery', 'OOP', 'GIT'],
   },
   {
     title: 'Overgang naar moderne web development',
@@ -346,6 +354,7 @@ const developmentMoments: Education[] = [
     period: '2017 - 2020',
     description:
       'Transitie van traditionele web development naar moderne frameworks en tools. Focus op component-based architectuur, state management en API-driven development.',
+    tags: ['Vue.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'GIT'],
   },
 ]
 

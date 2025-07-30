@@ -1,6 +1,7 @@
 <template>
   <div class="space-y-6">
     <h2 :class="titleClass" class="text-gray-900 dark:text-gray-100">{{ title }}</h2>
+    <p v-if="intro" class="text-gray-700 dark:text-gray-300">{{ intro }}</p>
     <div class="grid gap-4">
       <div v-for="skill in animatedSkills" :key="skill.name" class="space-y-2">
         <div class="flex justify-between">
@@ -25,6 +26,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 
 interface Props {
   title: string
+  intro?: string
   skills: Skill[]
   progressColor?: 'blue' | 'green' | 'purple' | 'red' | 'yellow' | 'indigo'
   titleSize?: 'small' | 'medium' | 'large' | 'extra-large'

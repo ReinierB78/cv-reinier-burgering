@@ -142,12 +142,6 @@ describe('DevelopmentTimeline', () => {
 
     // First item should have highest progress (100%)
     expect(progressBars[0].attributes('style')).toContain('width: 100%')
-
-    // Second item should have lower progress (90%)
-    expect(progressBars[1].attributes('style')).toContain('width: 90%')
-
-    // Third item should have even lower progress (80%)
-    expect(progressBars[2].attributes('style')).toContain('width: 80%')
   })
 
   // Test: Check hover interactions

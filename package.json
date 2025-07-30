@@ -19,7 +19,9 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "quality": "pnpm run lint:check && pnpm run format:check && pnpm run type-check && pnpm run test:run",
-    "prepare": "husky"
+    "prepare": "husky",
+    "deploy": "pnpm build && gh-pages -d dist",
+    "deploy:vercel": "vercel --prod"
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",

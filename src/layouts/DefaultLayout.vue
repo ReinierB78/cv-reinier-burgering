@@ -1,6 +1,10 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-    <!-- Mobile Header with hamburger menu -->
+    <!-- Mobi<script setup lang="ts">
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+import SourceCodeLink from '@/components/SourceCodeLink.vue'
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { computed, ref } from 'vue'eader with hamburger menu -->
     <header class="md:hidden bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40">
       <div class="flex items-center justify-between p-4">
         <!-- Logo/Title -->
@@ -30,6 +34,9 @@
     <div class="hidden md:block fixed top-4 right-4 z-50">
       <ThemeSwitcher />
     </div>
+
+    <!-- Source Code Link -->
+    <SourceCodeLink />
 
     <!-- Mobile Sidebar Overlay with backdrop blur - only show when user explicitly opens sidebar -->
     <Transition

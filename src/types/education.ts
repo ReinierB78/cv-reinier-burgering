@@ -3,4 +3,5 @@ export interface Education {
   institution: string
   period: string
   description?: string
+  tags?: string[]
 }
