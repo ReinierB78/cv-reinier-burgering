@@ -64,11 +64,11 @@
       >
         <div
           v-if="isSidebarOpen"
-          class="md:hidden fixed inset-0 bg-white dark:bg-gray-800 z-50 overflow-hidden"
+          class="md:hidden fixed inset-0 bg-white dark:bg-gray-800 z-50 flex flex-col"
         >
           <!-- Header met sluiten knop -->
           <div
-            class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"
+            class="flex-shrink-0 flex items-center justify-between p-4 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"
           >
             <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Profiel Reinier</h1>
 
@@ -92,8 +92,10 @@
           </div>
 
           <!-- Profiel content -->
-          <div class="p-6 overflow-y-auto h-full pb-24">
-            <slot name="sidebar" />
+          <div class="flex-1 overflow-y-auto">
+            <div class="p-6 pb-32">
+              <slot name="sidebar" />
+            </div>
           </div>
         </div>
       </Transition>
