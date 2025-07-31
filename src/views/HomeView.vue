@@ -256,12 +256,37 @@ const educationList: Education[] = []
 
 const developmentMoments: Education[] = [
   {
+    title: 'Uniform Componenten Bibliotheek',
+    institution: 'GroupCard',
+    period: '2024 - 2025',
+    description:
+      'Opzetten van een uniforme componenten bibliotheek voor gebruik in alle GroupCard projecten, gebaseerd op Vue / Nuxt / Inertia. Focus op herbruikbaarheid, consistentie en onderhoudbaarheid. Inclusief documentatie en voorbeelden voor ontwikkelaars.',
+    tags: [
+      'TypeScript',
+      'JavaScript',
+      'Prettier',
+      'ESLint',
+      'Vue',
+      'Storybook',
+      'Tailwind CSS',
+      'NPM Package',
+    ],
+  },
+  {
     title: 'WCAG optimalisaties inwissel platform',
     institution: 'GroupCard',
-    period: '2025',
+    period: '2024 - 2025',
     description:
       'Verbeteren van toegankelijkheid en gebruiksvriendelijkheid van het inwissel platform. Focus op WCAG 2.1 richtlijnen, inclusief toetsenbord navigatie, schermlezer ondersteuning en visuele contrasten.',
     tags: ['PHP', 'Laravel', 'JavaScript', 'OOP', 'MVC', 'GIT', 'WordPress'],
+  },
+  {
+    title: 'Bijdrage MonoRepo Stadspas platform',
+    institution: 'GroupCard',
+    period: '2024 - 2025',
+    description:
+      'Ondersteuning en doorontwikkeling van het mono-repo Stadspas platform. Focus op schaalbaarheid, multi-tenant inzet en integratie met externe systemen (mailplatform, DigiD, etc.). Substantiele focus op frontend, bij gelegenheid bijdrage aan backend. Betrof een Java backend bij Azure met Vue 3 frontend. Volledig CI/CD en TDD opzet met Trunk based development.',
+    tags: ['Java', 'Spring Boot', 'Vue 3', 'TypeScript', 'CI/CD', 'TDD', 'Trunk Based', 'Vitest'],
   },
   {
     title: 'Refactor van Nuxt 2 naar Nuxt 3',
@@ -269,6 +294,14 @@ const developmentMoments: Education[] = [
     period: '2024 - 2025',
     description:
       'Gefaseerde refactor van bestaande Nuxt 2 applicaties naar Nuxt 3. Focus op verbeterde prestaties, effectiever developen en herbruikbaarheid van componenten.\n\nNuxt 2 project bestond uit Nuxt Property Decorator en Vuex, waar company standard meer om Pinia, Composition API en ook Tailwind draaide.',
+    tags: ['JavaScript', 'Nuxt 3', 'Vue 3', 'Tailwind CSS', 'TypeScript'],
+  },
+  {
+    title: 'TDD implementatie in bestaand Nuxt projecten',
+    institution: 'GroupCard',
+    period: '2024 - 2025',
+    description:
+      'Implementatie van Test Driven Development (TDD) praktijken in bestaande Nuxt projecten. Focus op het schrijven van unit tests met Vitest, Vitest UI en Jest, integratietests en end-to-end tests om de codekwaliteit en betrouwbaarheid te verbeteren in een "aanmeld straat" welke continue in ontwikkeling was.',
     tags: ['JavaScript', 'Nuxt 3', 'Vue 3', 'Tailwind CSS', 'TypeScript'],
   },
   {
