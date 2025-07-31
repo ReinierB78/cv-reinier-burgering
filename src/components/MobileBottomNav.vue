@@ -1,6 +1,7 @@
 <template>
   <nav
-    class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
+    class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+    style="z-index: 60"
   >
     <div class="flex justify-around items-center py-2 px-4 max-w-7xl mx-auto">
       <button
@@ -40,7 +41,7 @@ import type { Tab } from '@/types'
 
 interface Props {
   tabs: Tab[]
-  activeTab: string
+  activeTab: string | null
   onTabChange: (tabId: string) => void
 }
 

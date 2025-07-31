@@ -194,7 +194,6 @@ const activities: DayActivity[] = [
 ]
 
 function setActiveActivity(index: number | null) {
-  console.log('Setting active activity:', index)
   activeActivity.value = index
 }
 

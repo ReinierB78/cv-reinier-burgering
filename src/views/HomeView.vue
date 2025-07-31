@@ -7,9 +7,9 @@
 
     <!-- Main Content -->
     <template #main>
-      <MainContent :tabs="tabs" :active-tab="activeTab" :on-tab-change="handleTabChange">
+      <MainContent :tabs="tabs" :active-tab="effectiveActiveTab" :on-tab-change="handleTabChange">
         <!-- Frontend Tab -->
-        <div v-if="activeTab === 'frontend'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'frontend'" class="space-y-6">
           <SkillsProgress
             title="Frontend Development"
             :intro="t('skills.frontendIntro')"
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Backend Tab -->
-        <div v-if="activeTab === 'backend'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'backend'" class="space-y-6">
           <SkillsProgress
             title="Backend Development"
             :intro="t('skills.backendIntro')"
@@ -35,7 +35,7 @@
         </div>
 
         <!-- Skills Tab -->
-        <div v-if="activeTab === 'skills'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'skills'" class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
             {{ $t('sections.generalSkills') }}
           </h2>
@@ -91,7 +91,7 @@
         </div>
 
         <!-- Day Circle Tab -->
-        <div v-if="activeTab === 'day'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'day'" class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
             {{ $t('sections.workLifeBalance') }}
           </h2>
@@ -101,7 +101,7 @@
         </div>
 
         <!-- Experience Tab -->
-        <div v-if="activeTab === 'experience'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'experience'" class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             {{ $t('sections.workExperience') }}
           </h2>
@@ -109,7 +109,7 @@
         </div>
 
         <!-- Education Tab -->
-        <div v-if="activeTab === 'education'" class="space-y-6">
+        <div v-if="effectiveActiveTab === 'education'" class="space-y-6">
           <EducationSection
             :education-list="educationList"
             :development-moments="developmentMoments"
@@ -120,14 +120,18 @@
 
     <!-- Mobile Bottom Navigation -->
     <template #bottom-nav>
-      <MobileBottomNav :tabs="tabs" :active-tab="activeTab" :on-tab-change="handleTabChange" />
+      <MobileBottomNav
+        :tabs="tabs"
+        :active-tab="effectiveActiveTab"
+        :on-tab-change="handleTabChange"
+      />
     </template>
   </DefaultLayout>
 </template>
 
 <script setup lang="ts">
 import type { Education, ProfileData, Skill, Tab, WorkExperience } from '@/types'
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, getCurrentInstance, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import DayCircle from '../components/DayCircle.vue'
 import EducationSection from '../components/EducationSection.vue'
 import ExperienceTimeline from '../components/ExperienceTimeline.vue'
@@ -138,6 +142,7 @@ import ProfileSidebar from '../components/ProfileSidebar.vue'
 import SkillsProgress from '../components/SkillsProgress.vue'
 import DefaultLayout from '../layouts/DefaultLayout.vue'
 // Heroicons imports
+import { useSidebar } from '@/composables/useSidebar'
 import {
   AcademicCapIcon,
   ChartBarIcon,
@@ -332,13 +337,29 @@ const developmentMoments: Education[] = [
   },
 ]
 
-// Actieve tab state
-const activeTab = ref('frontend')
+// Actieve tab state - responsive initialisatie
+const activeTab = ref<string | null>(null)
+const isDesktop = ref(false)
 const frontendSkillsRef = ref()
 const backendSkillsRef = ref()
 
 // Composables
 const { t } = useI18n()
+const { isSidebarOpen, closeSidebar, setOnSidebarClosed } = useSidebar()
+
+// Computed active tab - responsive logica voor desktop vs mobile
+const effectiveActiveTab = computed(() => {
+  if (isDesktop.value) {
+    // Desktop: altijd een actieve tab tonen, fallback naar 'frontend' als nog geen tab actief
+    return activeTab.value || 'frontend'
+  } else {
+    // Mobile: alleen actieve tab tonen als sidebar gesloten is
+    if (isSidebarOpen.value) {
+      return null
+    }
+    return activeTab.value
+  }
+})
 
 // Skills arrays - direct als fallback terwijl we i18n debuggen
 const technicalSkillsArray = computed(() => [
@@ -428,6 +449,11 @@ const profileData = computed(
 
 // Animatie functies
 function handleTabChange(tabId: string) {
+  // Sluit de sidebar als deze open is (op mobiel)
+  if (isSidebarOpen.value) {
+    closeSidebar()
+  }
+
   activeTab.value = tabId
 
   // Trigger animatie voor skills tabs via component refs
@@ -442,15 +468,59 @@ function handleTabChange(tabId: string) {
 
 // Initiële animatie bij component mount
 onMounted(() => {
-  // Wacht tot de component refs beschikbaar zijn, dan start animatie voor de actieve tab
-  nextTick(() => {
-    setTimeout(() => {
-      if (activeTab.value === 'frontend' && frontendSkillsRef.value) {
-        frontendSkillsRef.value.animateProgressBars()
-      } else if (activeTab.value === 'backend' && backendSkillsRef.value) {
-        backendSkillsRef.value.animateProgressBars()
+  // Screen size detectie
+  if (typeof window !== 'undefined') {
+    isDesktop.value = window.innerWidth >= 768 // md breakpoint
+
+    // Luister naar resize events
+    const handleResize = () => {
+      isDesktop.value = window.innerWidth >= 768
+    }
+    window.addEventListener('resize', handleResize)
+
+    // Cleanup op unmount
+    nextTick(() => {
+      const currentInstance = getCurrentInstance()
+      if (currentInstance) {
+        onBeforeUnmount(() => {
+          window.removeEventListener('resize', handleResize)
+          // Clear the sidebar callback on unmount
+          setOnSidebarClosed(null)
+        })
       }
-    }, 200) // Iets meer tijd voor de component om volledig te mounten
+    })
+  }
+
+  // Stel callback in voor wanneer sidebar wordt gesloten op mobiel
+  setOnSidebarClosed(() => {
+    // Alleen op mobiel: zet eerste tab actief als er nog geen actieve tab is
+    if (!isDesktop.value && !activeTab.value) {
+      activeTab.value = 'frontend'
+
+      // Start animatie voor frontend tab
+      nextTick(() => {
+        setTimeout(() => {
+          if (frontendSkillsRef.value) {
+            frontendSkillsRef.value.animateProgressBars()
+          }
+        }, 200)
+      })
+    }
   })
+
+  if (isDesktop.value) {
+    // Desktop: altijd frontend tab actief bij load
+    activeTab.value = 'frontend'
+
+    // Start animatie voor frontend tab
+    nextTick(() => {
+      setTimeout(() => {
+        if (frontendSkillsRef.value) {
+          frontendSkillsRef.value.animateProgressBars()
+        }
+      }, 200)
+    })
+  }
+  // Mobile: activeTab blijft null, sidebar overlay is zichtbaar
 })
 </script>

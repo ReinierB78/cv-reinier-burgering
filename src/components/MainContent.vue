@@ -17,7 +17,7 @@ import TabNavigation from './TabNavigation.vue'
 
 interface Props {
   tabs: Tab[]
-  activeTab: string
+  activeTab: string | null
   onTabChange: (tabId: string) => void
 }
 

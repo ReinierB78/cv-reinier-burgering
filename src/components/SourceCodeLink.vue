@@ -57,7 +57,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  githubUrl: 'https://github.com/reinierburgering/cv-page',
-  repoName: 'cv-page',
+  githubUrl: 'https://github.com/ReinierB78/cv-reinier-burgering',
+  repoName: 'cv-reinier-burgering',
 })
 </script>

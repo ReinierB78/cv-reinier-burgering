@@ -4,7 +4,7 @@ Een moderne, responsive CV-website gebouwd met **Vue 3**, **TypeScript**, en **T
 
 ## 🌐 Live Demo
 
-**[👉 Bekijk de live CV →](https://reinierburgering.github.io/cv-page)**
+**[👉 Bekijk de live CV →](https://cv-reinier-burgering.netlify.app/)**
 
 ## ✨ Technische Highlights
 
@@ -26,7 +26,7 @@ Een moderne, responsive CV-website gebouwd met **Vue 3**, **TypeScript**, en **T
 ### **Developer Experience**
 
 - 🔧 **Vite** voor snelle development
-- 🧪 **Vitest** voor unit testing (111 tests!)
+- 🧪 **Vitest** voor unit testing (162 tests!)
 - 🎨 **ESLint + Prettier** voor code quality
 - 📝 **Conventional Commits** met commitlint
 - 🪝 **Husky** voor git hooks
@@ -35,7 +35,7 @@ Een moderne, responsive CV-website gebouwd met **Vue 3**, **TypeScript**, en **T
 
 - ⚡ **Optimized builds** met Vite
 - 🎯 **100% type coverage** met TypeScript
-- 🧪 **111/111 tests passing**
+- 🧪 **159/159 tests passing**
 - 📱 **Touch-optimized** (geen iOS zoom issues)
 - 🌊 **Smooth animations** en transitions
 
@@ -79,7 +79,7 @@ pnpm quality       # Full quality check (lint + format + types + tests)
 
 ## 📊 Quality Metrics
 
-- ✅ **111/111 tests** passing
+- ✅ **162/162 tests** passing
 - ✅ **100% TypeScript** coverage
 - ✅ **ESLint + Prettier** compliant
 - ✅ **Mobile responsive** design

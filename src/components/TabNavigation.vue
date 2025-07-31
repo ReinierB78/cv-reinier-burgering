@@ -41,7 +41,7 @@ import type { Tab } from '@/types'
 
 interface Props {
   tabs: Tab[]
-  activeTab: string
+  activeTab: string | null
   onTabChange: (tabId: string) => void
 }
 
@@ -53,13 +53,14 @@ function handleTabChange(tabId: string) {
 }
 
 // Helper functions for keyboard navigation and utility
-function getTabIndex(tabId: string): number {
+function getTabIndex(tabId: string | null): number {
+  if (!tabId) return -1
   return props.tabs.findIndex(tab => tab.id === tabId)
 }
 
 function getNextTab(): Tab | null {
   const currentIndex = getTabIndex(props.activeTab)
-  if (currentIndex < props.tabs.length - 1) {
+  if (currentIndex >= 0 && currentIndex < props.tabs.length - 1) {
     return props.tabs[currentIndex + 1]
   }
   return null
@@ -74,11 +75,13 @@ function getPrevTab(): Tab | null {
 }
 
 function isFirstTab(): boolean {
-  return getTabIndex(props.activeTab) === 0
+  const index = getTabIndex(props.activeTab)
+  return index === 0
 }
 
 function isLastTab(): boolean {
-  return getTabIndex(props.activeTab) === props.tabs.length - 1
+  const index = getTabIndex(props.activeTab)
+  return index === props.tabs.length - 1
 }
 
 function handleKeyboardNavigation(event: KeyboardEvent) {
