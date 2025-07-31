@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Contribution"
+  },
+  "profile": {
+    "name": "Reinier Burgering",
+    "title": "Full Stack Developer",
+    "about": "A curious/autodidactic, versatile and independent front-end / web developer with useful back-end skills. Inventive and doesn't shy away from seeking quantity to arrive at the best solutions. Critical reflection ability to always want to develop and can adequately anticipate and respond to new situations."
+  },
+  "sections": {
+    "workExperience": "Work Experience",
+    "educationDevelopment": "Contribution & Development",
+    "importantMoments": "Important Development Moments",
+    "workLifeBalance": "Work-Life Balance",
+    "generalSkills": "General Skills",
+    "technical": "Technical",
+    "softSkills": "Soft Skills"
+  },
+  "demo": {
+    "title": "Technical Demo: Pinia Store + Service Pattern",
+    "features": "Demo Features:",
+    "description": "Pinia store management, dependency injection via symbols, service layer pattern, API error handling, loading states, and TypeScript interfaces."
+  },
+  "skills": {
+    "frontendIntro": "Frontend development is where technology and experience come together. I focus on pixel-perfect components, consistent code (using Prettier and ESLint), and a good balance between reusability and readability. Working with Vue (and Nuxt), TypeScript, and Tailwind helps me achieve my goals for end users, and I thrive on creating clear, scalable interfaces that just work—both technically and visually.",
+    "backendIntro": "Backend development is all about structure, logic, and smart connections. Whether it's a WordPress setup as a headless CMS, building custom APIs, or integrating third-party systems, I enjoy thinking about architecture and love solutions that are maintainable in the long run. My experience with PHP, Laravel, custom plugin development, and API design helps me give the frontend—and thus the end user—exactly what it needs.",
+    "technical": [
+      "Responsive Design",
+      "Component-based development (reusable code)",
+      "Composition API (Vue 3)",
+      "State Management (Pinia, Vuex)",
+      "Dependency Injection & Service Layer Pattern",
+      "API integration (REST)",
+      "API development (PHP / WordPress)",
+      "TypeScript (strict mode, type safety)",
+      "Testing (Vitest, TDD-mindset)",
+      "Tooling (Vite, CI/CD, Git, Valet)",
+      "Mobile development (React Native - in development)"
+    ],
+    "soft": [
+      "Team player with own responsibility",
+      "Clear communication (also with non-technical people)",
+      "Analytical & solution-oriented",
+      "Proactive in knowledge sharing",
+      "Experience with Agile / Scrum",
+      "Want to make positive impact (both in code and culture)",
+      "Quick onboarding in existing projects",
+      "Mentorship & guidance during migrations"
+    ]
+  },
+  "common": {
+    "period": "period",
+    "institution": "institution",
+    "company": "company",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  }
+}

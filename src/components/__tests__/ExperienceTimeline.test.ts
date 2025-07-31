@@ -95,8 +95,8 @@ describe('ExperienceTimeline', () => {
     expect(jobItems[2].classes()).toContain('border-blue-500')
   })
 
-  // Test: Check initial collapsed state
-  it('should start with all jobs collapsed', () => {
+  // Test: Check initial state - first job expanded, others collapsed
+  it('should start with first job expanded and others collapsed', () => {
     // Arrange & Act: Mount the component
     const wrapper = mount(ExperienceTimeline, {
       props: {
@@ -104,18 +104,20 @@ describe('ExperienceTimeline', () => {
       },
     })
 
-    // Assert: Descriptions should not be visible initially
-    expect(wrapper.text()).not.toContain('Leading frontend development team')
+    // Assert: First job description SHOULD be visible initially
+    expect(wrapper.text()).toContain('Leading frontend development team')
+    expect(wrapper.text()).toContain('Vue.js')
+
+    // Assert: Other job descriptions should NOT be visible initially
     expect(wrapper.text()).not.toContain('Developed responsive web applications')
     expect(wrapper.text()).not.toContain('Started career building WordPress websites')
 
-    // Assert: Tags should not be visible initially
-    expect(wrapper.text()).not.toContain('Vue.js')
+    // Assert: Other job tags should not be visible initially
     expect(wrapper.text()).not.toContain('React')
     expect(wrapper.text()).not.toContain('WordPress')
   })
 
-  // Test: Check expansion functionality
+  // Test: Check expansion functionality (first job starts expanded, test expanding second job)
   it('should expand job details when clicked', async () => {
     // Arrange: Mount the component
     const wrapper = mount(ExperienceTimeline, {
@@ -124,25 +126,28 @@ describe('ExperienceTimeline', () => {
       },
     })
 
-    // Act: Click on the first job header
-    const firstJobHeader = wrapper.findAll('.py-3')[0]
-    await firstJobHeader.trigger('click')
-
-    // Assert: First job description should now be visible
+    // Assert: First job should already be expanded by default
     expect(wrapper.text()).toContain('Leading frontend development team')
-
-    // Assert: First job tags should be visible
     expect(wrapper.text()).toContain('Vue.js')
-    expect(wrapper.text()).toContain('TypeScript')
-    expect(wrapper.text()).toContain('Tailwind CSS')
-    expect(wrapper.text()).toContain('Team Lead')
 
-    // Assert: Other jobs should still be collapsed
-    expect(wrapper.text()).not.toContain('Developed responsive web applications')
+    // Act: Click on the second job header to expand it
+    const secondJobHeader = wrapper.findAll('.py-3')[1]
+    await secondJobHeader.trigger('click')
+
+    // Assert: Second job description should now be visible
+    expect(wrapper.text()).toContain('Developed responsive web applications')
+
+    // Assert: Second job tags should be visible
+    expect(wrapper.text()).toContain('React')
+    expect(wrapper.text()).toContain('JavaScript')
+    expect(wrapper.text()).toContain('SCSS')
+    expect(wrapper.text()).toContain('Node.js')
+
+    // Assert: Third job should still be collapsed
     expect(wrapper.text()).not.toContain('Started career building WordPress websites')
   })
 
-  // Test: Check collapse functionality
+  // Test: Check collapse functionality (first job starts expanded)
   it('should collapse job details when clicked again', async () => {
     // Arrange: Mount the component
     const wrapper = mount(ExperienceTimeline, {
@@ -151,14 +156,11 @@ describe('ExperienceTimeline', () => {
       },
     })
 
-    // Act: Click to expand
-    const firstJobHeader = wrapper.findAll('.py-3')[0]
-    await firstJobHeader.trigger('click')
-
-    // Verify it's expanded
+    // Assert: First job should already be expanded by default
     expect(wrapper.text()).toContain('Leading frontend development team')
 
-    // Act: Click again to collapse
+    // Act: Click the first job header to collapse it
+    const firstJobHeader = wrapper.findAll('.py-3')[0]
     await firstJobHeader.trigger('click')
 
     // Assert: Description should no longer be visible
@@ -166,7 +168,7 @@ describe('ExperienceTimeline', () => {
     expect(wrapper.text()).not.toContain('Vue.js')
   })
 
-  // Test: Check multiple expansions
+  // Test: Check multiple expansions (first job starts expanded)
   it('should allow multiple jobs to be expanded simultaneously', async () => {
     // Arrange: Mount the component
     const wrapper = mount(ExperienceTimeline, {
@@ -175,9 +177,8 @@ describe('ExperienceTimeline', () => {
       },
     })
 
-    // Act: Expand first two jobs
+    // Act: Expand second job (first is already expanded)
     const jobHeaders = wrapper.findAll('.py-3')
-    await jobHeaders[0].trigger('click')
     await jobHeaders[1].trigger('click')
 
     // Assert: Both job descriptions should be visible
@@ -192,7 +193,7 @@ describe('ExperienceTimeline', () => {
     expect(wrapper.text()).not.toContain('Started career building WordPress websites')
   })
 
-  // Test: Check arrow icon rotation
+  // Test: Check arrow icon rotation (first job starts expanded)
   it('should rotate arrow icon when expanded', async () => {
     // Arrange: Mount the component
     const wrapper = mount(ExperienceTimeline, {
@@ -205,15 +206,15 @@ describe('ExperienceTimeline', () => {
     const arrowIcons = wrapper.findAll('svg')
     const firstArrow = arrowIcons[0]
 
-    // Assert: Initially should not have rotate-180 class
-    expect(firstArrow.classes()).not.toContain('rotate-180')
+    // Assert: First job should already be expanded, so arrow should have rotate-180 class
+    expect(firstArrow.classes()).toContain('rotate-180')
 
-    // Act: Click to expand
+    // Act: Click to collapse
     const firstJobHeader = wrapper.findAll('.py-3')[0]
     await firstJobHeader.trigger('click')
 
-    // Assert: Arrow should now be rotated
-    expect(firstArrow.classes()).toContain('rotate-180')
+    // Assert: Arrow should no longer be rotated
+    expect(firstArrow.classes()).not.toContain('rotate-180')
   })
 
   // Test: Check hover effects
@@ -292,17 +293,14 @@ describe('ExperienceTimeline', () => {
       },
     ]
 
-    // Act: Mount component and expand
+    // Act: Mount component (first job is automatically expanded)
     const wrapper = mount(ExperienceTimeline, {
       props: {
         workExperience: jobWithoutTags,
       },
     })
 
-    const jobHeader = wrapper.find('.py-3')
-    await jobHeader.trigger('click')
-
-    // Assert: Description should be visible but no tags section
+    // Assert: Description should be visible (since first job is auto-expanded)
     expect(wrapper.text()).toContain('Test description without tags')
 
     // Assert: No tag elements should be present

@@ -11,7 +11,10 @@ import { computed, ref } from 'vue'eader with hamburger menu -->
         <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">CV</h1>
 
         <!-- Mobile controls -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2">
+          <!-- Language Switcher -->
+          <LanguageSwitcher />
+
           <!-- Theme Switcher -->
           <ThemeSwitcher />
 
@@ -30,8 +33,9 @@ import { computed, ref } from 'vue'eader with hamburger menu -->
       </div>
     </header>
 
-    <!-- Desktop Theme Switcher (top-right) -->
-    <div class="hidden md:block fixed top-4 right-4 z-50">
+    <!-- Desktop Controls (top-right) -->
+    <div class="hidden md:flex fixed top-4 right-4 z-50 space-x-3">
+      <!-- <LanguageSwitcher /> -->
       <ThemeSwitcher />
     </div>
 
@@ -115,6 +119,7 @@ import { computed, ref } from 'vue'eader with hamburger menu -->
 </template>
 
 <script setup lang="ts">
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 import { UserCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { computed, ref } from 'vue'

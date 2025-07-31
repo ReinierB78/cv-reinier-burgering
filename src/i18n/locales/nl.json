@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "skills": "Skills",
+    "experience": "Ervaring",
+    "education": "Bijdrage"
+  },
+  "profile": {
+    "name": "Reinier Burgering",
+    "title": "Full Stack Developer",
+    "about": "Een leergierig/autodidactisch, veelzijdig en zelfstandige front-end / webdeveloper met bruikbare back-end skills. Inventief en schuwt niet de kwantiteit op te zoeken om te komen tot beste oplossingen. Kritisch reflectievermogen om altijd te willen ontwikkelen en kan daarbij adequaat anticiperen en inspelen op nieuwe situaties."
+  },
+  "sections": {
+    "workExperience": "Werkervaring",
+    "educationDevelopment": "Bijdrage & Ontwikkeling",
+    "importantMoments": "Belangrijke ontwikkelingsmomenten",
+    "workLifeBalance": "Work-Life Balance",
+    "generalSkills": "Algemene Vaardigheden",
+    "technical": "Technisch",
+    "softSkills": "Soft Skills"
+  },
+  "demo": {
+    "title": "Technical Demo: Pinia Store + Service Pattern",
+    "features": "Demo Features:",
+    "description": "Pinia store beheer, dependency injection via symbols, service layer patroon, API error afhandeling, laadstatus, en TypeScript interfaces."
+  },
+  "skills": {
+    "frontendIntro": "Frontend development is voor mij de plek waar techniek en beleving samenkomen en waar ik het uiteindelijk voor doe. Dat laat ik terugkomen in pixel-perfect componenten, consistente code (prettier en lint) en een goede balans tussen herbruikbaarheid en leesbaarheid. Werken met Vue (en Nuxt), TypeScript en Tailwind draagt bij aan wat ik wil bereiken voor eindgebruikers, en ik haal energie uit het creëren van overzichtelijke, schaalbare interfaces die gewoon kloppen. Zowel technisch én visueel.",
+    "backendIntro": "Aan de backendkant draait het voor mij om structuur, logica en slimme koppelingen. Of het nu gaat om een WordPress-setup als headless CMS, het bouwen van custom API's of het integreren van third-party systemen: ik denk graag mee over de architectuur en hou van oplossingen die onderhoudbaar zijn op de lange termijn. Mijn ervaring met PHP, Laravel, custom pluginontwikkeling en API-design helpt me om de frontend, en dus de eindgebruiker altijd precies te geven wat het nodig heeft.",
+    "technical": [
+      "Responsive Design",
+      "Component-based development (herbruikbare code)",
+      "Composition API (Vue 3)",
+      "State Management (Pinia, Vuex)",
+      "Dependency Injection & Service Layer Pattern",
+      "API integratie (REST)",
+      "API ontwikkeling (PHP / WordPress)",
+      "Typescript (strict mode, typesafety)",
+      "Testing (Vitest, TDD-mindset)",
+      "Tooling (Vite, CI/CD, Git, Valet)",
+      "Mobile development (React Native - in ontwikkeling)"
+    ],
+    "soft": [
+      "Teamplayer met eigen verantwoordelijkheid",
+      "Heldere communicatie (ook met niet-techneuten)",
+      "Analytisch & oplossingsgericht",
+      "Proactief in kennisdeling",
+      "Ervaring met Agile / Scrum",
+      "Positieve impact willen maken (zowel in code als cultuur)",
+      "Snelle onboarding in bestaande projecten",
+      "Mentorship & begeleiding bij migraties"
+    ]
+  },
+  "common": {
+    "period": "periode",
+    "institution": "instelling",
+    "company": "bedrijf",
+    "loading": "Laden...",
+    "error": "Er is een fout opgetreden"
+  }
+}

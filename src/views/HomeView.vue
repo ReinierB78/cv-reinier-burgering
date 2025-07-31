@@ -12,11 +12,7 @@
         <div v-if="activeTab === 'frontend'" class="space-y-6">
           <SkillsProgress
             title="Frontend Development"
-            intro="Frontend development is voor mij de plek waar techniek en beleving samenkomen en waar ik het uiteindelijk voor doe.
-            Dat laat ik terugkomen in pixel-perfect componenten, consistente code (prettier en lint) en een goede balans tussen herbruikbaarheid en
-            leesbaarheid. Werken met Vue (en Nuxt), TypeScript en Tailwind draagt bij aan wat ik wil bereiken voor eindgebruikers,
-            en ik haal energie uit het creëren van overzichtelijke, schaalbare interfaces die gewoon kloppen. Zowel technisch én visueel.
-          "
+            :intro="t('skills.frontendIntro')"
             :skills="frontendSkills"
             progress-color="blue"
             title-size="medium"
@@ -29,7 +25,7 @@
         <div v-if="activeTab === 'backend'" class="space-y-6">
           <SkillsProgress
             title="Backend Development"
-            intro="Aan de backendkant draait het voor mij om structuur, logica en slimme koppelingen. Of het nu gaat om een WordPress-setup als headless CMS, het bouwen van custom API's of het integreren van third-party systemen: ik denk graag mee over de architectuur en hou van oplossingen die onderhoudbaar zijn op de lange termijn. Mijn ervaring met PHP, Laravel, custom pluginontwikkeling en API-design helpt me om de frontend, en dus de eindgebruiker altijd precies te geven wat het nodig heeft. "
+            :intro="t('skills.backendIntro')"
             :skills="backendSkills"
             progress-color="green"
             title-size="medium"
@@ -41,15 +37,15 @@
         <!-- Skills Tab -->
         <div v-if="activeTab === 'skills'" class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
-            Algemene Vaardigheden
+            {{ $t('sections.generalSkills') }}
           </h2>
           <div class="grid grid-cols-2 gap-6">
             <div class="space-y-3">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 transition-colors">
-                Technisch
+                {{ $t('sections.technical') }}
               </h3>
               <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                <li v-for="skill in technicalSkillsList" :key="skill" class="flex items-center">
+                <li v-for="skill in technicalSkillsArray" :key="skill" class="flex items-center">
                   <span class="text-green-500 mr-2">✓</span>
                   <span class="text-gray-900 dark:text-gray-100 transition-colors">{{
                     skill
@@ -59,10 +55,10 @@
             </div>
             <div class="space-y-3">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 transition-colors">
-                Soft Skills
+                {{ $t('sections.softSkills') }}
               </h3>
               <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                <li v-for="skill in softSkillsList" :key="skill" class="flex items-center">
+                <li v-for="skill in softSkillsArray" :key="skill" class="flex items-center">
                   <span class="text-blue-500 mr-2">✓</span>
                   <span class="text-gray-900 dark:text-gray-100 transition-colors">{{
                     skill
@@ -79,7 +75,7 @@
             >
               <span class="mr-2">🛠️</span>
               <span class="text-gray-900 dark:text-gray-100 transition-colors">
-                Technical Demo: Pinia Store + Service Pattern
+                {{ $t('demo.title') }}
               </span>
             </h3>
             <JokeDisplay />
@@ -87,9 +83,8 @@
               class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-700 transition-colors"
             >
               <p class="text-sm text-blue-700 dark:text-blue-300 transition-colors">
-                <span class="font-medium">🎯 Demo Features:</span>
-                Pinia store beheer, dependency injection via symbols, service layer patroon, API
-                error afhandeling, laadstatus, en TypeScript interfaces.
+                <span class="font-medium">🎯 {{ $t('demo.features') }}</span>
+                {{ $t('demo.description') }}
               </p>
             </div>
           </div>
@@ -98,7 +93,7 @@
         <!-- Day Circle Tab -->
         <div v-if="activeTab === 'day'" class="space-y-6">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 transition-colors">
-            Work-Life Balance
+            {{ $t('sections.workLifeBalance') }}
           </h2>
           <div class="flex justify-center">
             <DayCircle />
@@ -107,7 +102,9 @@
 
         <!-- Experience Tab -->
         <div v-if="activeTab === 'experience'" class="space-y-6">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Werkervaring</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            {{ $t('sections.workExperience') }}
+          </h2>
           <ExperienceTimeline :work-experience="workExperience" />
         </div>
 
@@ -130,7 +127,7 @@
 
 <script setup lang="ts">
 import type { Education, ProfileData, Skill, Tab, WorkExperience } from '@/types'
-import { nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import DayCircle from '../components/DayCircle.vue'
 import EducationSection from '../components/EducationSection.vue'
 import ExperienceTimeline from '../components/ExperienceTimeline.vue'
@@ -148,6 +145,7 @@ import {
   ComputerDesktopIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/vue/24/outline'
+import { useI18n } from 'vue-i18n'
 
 // Skills data met progress bars
 const frontendSkills: Skill[] = [
@@ -155,17 +153,18 @@ const frontendSkills: Skill[] = [
   { name: 'Nuxt', level: 90 },
   { name: 'TypeScript', level: 85 },
   { name: 'JavaScript', level: 95 },
-  { name: 'Tailwind CSS', level: 90 },
+  { name: 'Tailwind / Bootstrap / Foundation', level: 90 },
   { name: 'HTML/CSS/JavaScript/jQuery', level: 100 },
   { name: 'React, React Native', level: 75 },
   { name: 'Pinia / Vuex', level: 90 },
   { name: 'Composition API', level: 95 },
   { name: 'Component-based architecture', level: 95 },
-  { name: 'Responsive Design', level: 90 },
-  { name: 'Vitest / Teststrategie', level: 75 },
-  { name: 'Vite / Tooling', level: 85 },
+  { name: 'Responsive Design (Flexbox, Grid)', level: 90 },
+  { name: 'SCSS, LESS, BEM, etc.', level: 95 },
+  { name: 'API Integratie (REST / Axios / Devour.js)', level: 90 },
+  { name: 'Vitest / Jest / Teststrategie', level: 75 },
+  { name: 'Vite / Webpack / Tooling', level: 85 },
   { name: 'Accessibility (WCAG basics)', level: 85 },
-  { name: 'API Integratie (REST / Axios)', level: 90 },
 ]
 
 const backendSkills: Skill[] = [
@@ -192,31 +191,6 @@ const tagCloud: string[] = [
   'Teamspeler',
   'Projectmatig',
   'Operationeel',
-]
-
-const technicalSkillsList: string[] = [
-  'Responsive Design',
-  'Component-based development (herbruikbare code)',
-  'Composition API (Vue 3)',
-  'State Management (Pinia, Vuex)',
-  'Dependency Injection & Service Layer Pattern',
-  'API integratie (REST)',
-  'API ontwikkeling (PHP / WordPress)',
-  'Typescript (strict mode, typesafety)',
-  'Testing (Vitest, TDD-mindset)',
-  'Tooling (Vite, CI/CD, Git, Valet)',
-  'Mobile development (React Native - in ontwikkeling)',
-]
-
-const softSkillsList: string[] = [
-  'Teamplayer met eigen verantwoordelijkheid',
-  'Heldere communicatie (ook met niet-techneuten)',
-  'Analytisch & oplossingsgericht',
-  'Proactief in kennisdeling',
-  'Ervaring met Agile / Scrum',
-  'Positieve impact willen maken (zowel in code als cultuur)',
-  'Snelle onboarding in bestaande projecten',
-  'Mentorship & begeleiding bij migraties',
 ]
 
 const workExperience: WorkExperience[] = [
@@ -363,65 +337,94 @@ const activeTab = ref('frontend')
 const frontendSkillsRef = ref()
 const backendSkillsRef = ref()
 
-// Tab opties
-const tabs: Tab[] = [
+// Composables
+const { t } = useI18n()
+
+// Skills arrays - direct als fallback terwijl we i18n debuggen
+const technicalSkillsArray = computed(() => [
+  'Responsive Design',
+  'Component-based development (herbruikbare code)',
+  'Composition API (Vue 3)',
+  'State Management (Pinia, Vuex)',
+  'Dependency Injection & Service Layer Pattern',
+  'API integratie (REST)',
+  'API ontwikkeling (PHP / WordPress)',
+  'Typescript (strict mode, typesafety)',
+  'Testing (Vitest, TDD-mindset)',
+  'Tooling (Vite, CI/CD, Git, Valet)',
+  'Mobile development (React Native - in ontwikkeling)',
+])
+
+const softSkillsArray = computed(() => [
+  'Teamplayer met eigen verantwoordelijkheid',
+  'Heldere communicatie (ook met niet-techneuten)',
+  'Analytisch & oplossingsgericht',
+  'Proactief in kennisdeling',
+  'Ervaring met Agile / Scrum',
+  'Positieve impact willen maken (zowel in code als cultuur)',
+  'Snelle onboarding in bestaande projecten',
+  'Mentorship & begeleiding bij migraties',
+])
+
+// Tab opties - reactief met i18n
+const tabs = computed((): Tab[] => [
   {
     id: 'frontend',
-    name: 'Frontend',
-    label: 'Frontend',
+    name: t('nav.frontend'),
+    label: t('nav.frontend'),
     icon: ComputerDesktopIcon,
     href: '#',
     current: false,
   },
   {
     id: 'backend',
-    name: 'Backend',
-    label: 'Backend',
+    name: t('nav.backend'),
+    label: t('nav.backend'),
     icon: CogIcon,
     href: '#',
     current: false,
   },
   {
     id: 'skills',
-    name: 'Skills',
-    label: 'Skills',
+    name: t('nav.skills'),
+    label: t('nav.skills'),
     icon: WrenchScrewdriverIcon,
     href: '#',
     current: false,
   },
-  // { id: 'day', name: 'Mijn Dag', label: 'Mijn Dag', icon: '🌅', href: '#', current: false },
   {
     id: 'experience',
-    name: 'Ervaring',
-    label: 'Ervaring',
+    name: t('nav.experience'),
+    label: t('nav.experience'),
     icon: ChartBarIcon,
     href: '#',
     current: false,
   },
   {
     id: 'education',
-    name: 'Bijdrage',
-    label: 'Bijdrage',
+    name: t('nav.education'),
+    label: t('nav.education'),
     icon: AcademicCapIcon,
     href: '#',
     current: false,
   },
-]
+])
 
-// CV Data
-const profileData: ProfileData = {
-  name: 'Reinier Burgering',
-  title: 'Full Stack Developer',
-  photo: '/img/reinier_profile_pic.jpeg', // Place your photo in public/img/profile.jpg
-  details: {
-    Geboortedatum: '07-07-1978',
-    Telefoon: '+31 6 505 26 727',
-    Email: 'reinierburgering@gmail.com',
-    Locatie: 'Nederland',
-  },
-  about:
-    'Een leergierig/autodidactisch, veelzijdig en zelfstandige front-end / webdeveloper met bruikbare back-end skills. Inventief en schuwt niet de kwantiteit op te zoeken om te komen tot beste oplossingen. Kritisch reflectievermogen om altijd te willen ontwikkelen en kan daarbij adequaat anticiperen en inspelen op nieuwe situaties.',
-}
+// CV Data - ook reactief maken
+const profileData = computed(
+  (): ProfileData => ({
+    name: 'Reinier Burgering',
+    title: 'Full Stack Developer',
+    photo: '/img/reinier_profile_pic.jpeg',
+    details: {
+      Geboortedatum: '07-07-1978',
+      Telefoon: '+31 6 505 26 727',
+      Email: 'reinierburgering@gmail.com',
+      Locatie: 'Nederland',
+    },
+    about: t('profile.about'),
+  })
+)
 
 // Animatie functies
 function handleTabChange(tabId: string) {

@@ -84,7 +84,8 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const expandedJobs = ref<Set<number>>(new Set())
+// Start with first job expanded (index 0)
+const expandedJobs = ref<Set<number>>(new Set([0]))
 
 function toggleJobExpansion(index: number) {
   if (expandedJobs.value.has(index)) {
