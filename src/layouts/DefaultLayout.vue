@@ -20,12 +20,16 @@
           <!-- Profile Button -->
           <button
             @click="toggleSidebar"
-            class="p-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors touch-manipulation"
+            class="relative p-3 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors touch-manipulation"
             style="font-size: 16px; min-height: 44px; min-width: 44px"
             :aria-expanded="isSidebarOpen"
             aria-label="Open profiel"
           >
             <UserCircleIcon class="h-7 w-7" />
+            <!-- Online indicator -->
+            <div
+              class="absolute bottom-2.5 right-2.5 h-3.5 w-3.5 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 shadow-sm animate-pulse"
+            ></div>
           </button>
         </div>
       </div>
