@@ -439,7 +439,7 @@ const profileData = computed(
     photo: '/img/reinier_profile_pic.jpeg',
     details: {
       Geboortedatum: '07-07-1978',
-      Telefoon: '+31 6 505 26 727',
+      Telefoon: '+31 6 [mail me]',
       Email: 'reinierburgering@gmail.com',
       Locatie: 'Nederland',
     },
