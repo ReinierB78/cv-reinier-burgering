@@ -86,7 +86,7 @@
                 style="font-size: 16px; min-height: 44px; min-width: 44px"
                 aria-label="Profiel sluiten"
               >
-                <XMarkIcon class="h-6 w-6" />
+                <XMarkIcon class="h-7 w-7" />
               </button>
             </div>
           </div>
