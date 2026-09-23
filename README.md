@@ -90,7 +90,7 @@ pnpm quality       # Full quality check (lint + format + types + tests)
 **Reinier Burgering** - Full Stack Developer
 
 - 📧 **Email**: reinierburgering@gmail.com
-- 📱 **Telefoon**: +31 6 505 26 727
+- 📱 **Telefoon**: +31 6 [email me]
 
 ---
 
