@@ -200,9 +200,17 @@ const tagCloud: string[] = [
 
 const workExperience: WorkExperience[] = [
   {
+    title: 'Frontend Webdeveloper',
+    company: 'MyParcel',
+    period: 'November 2025 - heden',
+    description:
+      'Werken aan online verzendingsplatform voor e-commerce klanten. Focus op frontend ontwikkeling met Vue3, TypeScript en Tailwind CSS. 100% coverage. \n\n Implementatie van nieuwe features, optimalisatie van bestaande functionaliteiten en bijdragen aan de algehele gebruikerservaring. Daarnaast betrokken bij code reviews, unit testing en samenwerking met backend developers om een naadloze integratie van API’s te waarborgen. Tevens actief in het verbeteren van de ontwikkelworkflow m.b.t. Claude en AI in algemeen. Wegens mijn affiniteit met backend en PHP ook bijgedragen aan ontwikkelen van de Laravel API.',
+    tags: ['Vue3', 'Vitest', 'PHP', 'Laravel', 'API', 'OOP', 'MVC', 'GIT', 'Jira'],
+  },
+  {
     title: 'Fullstack Webdeveloper',
     company: 'GroupCard',
-    period: 'September 2022 - heden',
+    period: 'September 2022 - Oktober 2025',
     description:
       'Uitvoeren van diverse Webdevelopment taken en projecten op zowel front- als backend. Onderhoud 45+ Wordpress websites, opzetten en doorontwikkelen maatwerk plugins (PHP). Onderhouden Headless Vue/Nuxt2 platform voor onboarding partners en burgers. Bijdrage ontwikkeling Laravel platform (e-commerce).',
     tags: [
@@ -255,6 +263,38 @@ const workExperience: WorkExperience[] = [
 const educationList: Education[] = []
 
 const developmentMoments: Education[] = [
+  {
+    title: 'Opzet en ontwikkeling Notificatie-center',
+    institution: 'MyParcel',
+    period: '2026',
+    description:
+      'Opzetten van een notificatie-center voor het MyParcel platform, inclusief real-time notificaties, gebruikersinstellingen. Focus op frontend ontwikkeling met Vue3, TypeScript, test coverage en gebruikerservaring. Maar ook implementatie van de WYSIWYG editor voor het opstellen van notificaties, inclusief integratie met backend API en validatie, waarbij ik dus in de Laravel stack heb gewerkt.',
+    tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Vitest', 'Laravel', 'API'],
+  },
+  {
+    title: 'Password Policy inventarisatie en implementatie',
+    institution: 'MyParcel',
+    period: '2026',
+    description:
+      'Wegens nauwere samenwerking met externe partner (van groot belang), was het noodzakelijk om een specifieke password policy te implementeren, met behoud van onze eigen systemen. Dit betrof zowel frontend als backend, inclusief API integratie en validatie. Hierbij is inventarisatie gedaan, planning overeengekomen met diverse betrokkenen en heb zorggedragen voor een gedeelte van de uitvoer.',
+    tags: ['Vue 3', 'TypeScript', 'Auth0', 'API'],
+  },
+  {
+    title: 'Implementatie van AI in ontwikkelworkflow',
+    institution: 'MyParcel',
+    period: '2026',
+    description:
+      'Bijdrage aan onderzoek en implementatie van AI tools (zoals met name Claude) in de ontwikkelworkflow. ADRs, styles',
+    tags: ['AI', 'Claude', 'Refactoring', 'Documentation'],
+  },
+  {
+    title: 'Onboarding flow beschikbaar gesteld voor Marketing',
+    institution: 'MyParcel',
+    period: '2026',
+    description:
+      'Implementatie van een bestaande, toch niet compleet werkende onboarding flow voor de marketing afdeling, met focus op gebruikerservaring en behoud.',
+    tags: ['Vue 3', 'TypeScript', 'Appcues', 'User Experience', 'Marketing'],
+  },
   {
     title: 'Uniform Componenten Bibliotheek',
     institution: 'GroupCard',
