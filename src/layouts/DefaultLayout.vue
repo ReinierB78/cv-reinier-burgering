@@ -7,7 +7,9 @@
     >
       <div class="flex items-center justify-between p-4">
         <!-- Logo/Title -->
-        <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">CV Reinier</h1>
+        <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100" @click="toggleSidebar">
+          CV Reinier
+        </h1>
 
         <!-- Mobile controls -->
         <div class="flex items-center space-x-2">
