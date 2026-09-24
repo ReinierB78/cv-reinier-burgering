@@ -7,7 +7,9 @@
     >
       <div class="flex items-center justify-between p-4">
         <!-- Logo/Title -->
-        <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">CV Reinier</h1>
+        <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100" @click="toggleSidebar">
+          CV Reinier
+        </h1>
 
         <!-- Mobile controls -->
         <div class="flex items-center space-x-2">
@@ -100,7 +102,7 @@
         </div>
       </Transition>
 
-      <!-- Main Content Area -->
+      <!-- Main Content Area -->\
       <main class="flex-1 min-h-screen flex flex-col">
         <!-- Content -->
         <div class="flex-1 p-4 md:p-6 pb-20 md:pb-6">

@@ -440,7 +440,6 @@ const technicalSkillsArray = computed(() => [
   'Component-based development (herbruikbare code)',
   'Composition API (Vue 3)',
   'State Management (Pinia, Vuex)',
-  'Dependency Injection & Service Layer Pattern',
   'API integratie (REST)',
   'API ontwikkeling (PHP / WordPress)',
   'Typescript (strict mode, typesafety)',
