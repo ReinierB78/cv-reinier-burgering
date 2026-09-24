@@ -102,7 +102,7 @@
         </div>
       </Transition>
 
-      <!-- Main Content Area -->
+      <!-- Main Content Area -->\
       <main class="flex-1 min-h-screen flex flex-col">
         <!-- Content -->
         <div class="flex-1 p-4 md:p-6 pb-20 md:pb-6">
